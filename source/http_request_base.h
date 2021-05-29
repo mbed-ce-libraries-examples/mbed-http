@@ -233,7 +233,7 @@ public:
     }
 
 protected:
-    virtual nsapi_error_t connect_socket(char *host, uint16_t port) = 0;
+    virtual nsapi_error_t connect_socket(SocketAddress addr) = 0;
 
 private:
     nsapi_error_t connect_socket( ) {
@@ -244,7 +244,7 @@ private:
 
 
         if (_we_created_socket) {
-            nsapi_error_t connection_result = connect_socket(_parsed_url->host(), _parsed_url->port());
+            nsapi_error_t connection_result = connect_socket(address);
             if (connection_result != NSAPI_ERROR_OK) {
                 return connection_result;
             }
@@ -333,6 +333,7 @@ private:
 
 private:
     Socket* _socket;
+    SocketAddress address;
     Callback<void(const char *at, uint32_t length)> _body_callback;
 
     ParsedUrl* _parsed_url;

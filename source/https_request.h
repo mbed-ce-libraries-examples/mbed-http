@@ -59,6 +59,8 @@ public:
         _socket = new TLSSocket();
         ((TLSSocket*)_socket)->open(network);
         ((TLSSocket*)_socket)->set_root_ca_cert(ssl_ca_pem);
+        network->gethostbyname(_parsed_url->host(), &address);
+        address.set_port(_parsed_url->port());
         _we_created_socket = true;
     }
 
@@ -90,8 +92,8 @@ public:
     virtual ~HttpsRequest() {}
 
 protected:
-    virtual nsapi_error_t connect_socket(char *host, uint16_t port) {
-        return ((TLSSocket*)_socket)->connect(host, port);
+    virtual nsapi_error_t connect_socket(SocketAddress addr) {
+        return ((TLSSocket*)_socket)->connect(addr);
     }
 };
 

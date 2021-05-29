@@ -62,6 +62,8 @@ public:
 
         _socket = new TCPSocket();
         ((TCPSocket*)_socket)->open(network);
+        network->gethostbyname(_parsed_url->host(), &address);
+        address.set_port(_parsed_url->port());
         _we_created_socket = true;
     }
 
@@ -92,8 +94,8 @@ public:
 
 protected:
 
-    virtual nsapi_error_t connect_socket(char *host, uint16_t port) {
-        return ((TCPSocket*)_socket)->connect(host, port);
+    virtual nsapi_error_t connect_socket(SocketAddress addr) {
+        return ((TCPSocket*)_socket)->connect(addr);
     }
 };
 
