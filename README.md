@@ -19,3 +19,5 @@ You can look to [README_mbed-http.md](https://github.com/mbed-ce-libraries-examp
 
 ### Status:
 This library was tested (02/2024) with Nucleo-F767ZI, VS-Code under Win11, GCC 12.3 and MbedCE library
+
+Fork of https://os.mbed.com/teams/sandbox/code/mbed-http/
