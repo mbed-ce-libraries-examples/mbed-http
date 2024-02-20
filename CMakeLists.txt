@@ -1,7 +1,7 @@
 #[[https://github.com/mbed-ce/mbed-os/wiki/MbedOS-configuration#libraries-in-your-application]]
 
 #[[ Set name of library in lowcase]]
-set(INTERNAL_LIBRARY_NAME "mbed_http")
+set(INTERNAL_LIBRARY_NAME "mbed-http")
 
 #[[ Here fill all .cpp files]]
 add_library(${INTERNAL_LIBRARY_NAME} STATIC http_parser/http_parser.c)
